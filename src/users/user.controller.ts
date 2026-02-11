@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get()
-  findAll(): string {
+  getAllUsers(): string {
     return 'This action returns all users';
   }
 
@@ -14,6 +14,7 @@ export class UserController {
     this.userService.create('New User');
     return 'User created successfully';
   }
+
   @Get('getUsers')
   getUsers(): string[] {
     return this.userService.addUser();
