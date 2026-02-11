@@ -6,7 +6,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
   @Get()
   getAllUsers(): string {
-    return 'This action returns all users';
+    return this.userService.getAllUsers();
   }
 
   @Post('addUser')
@@ -18,6 +18,10 @@ export class UserController {
   @Get('getUsers')
   getUsers(): string[] {
     return this.userService.addUser();
+  }
+  @Get('getUser')
+  async getUserById(): Promise<string> {
+    return this.userService.getUser();
   }
 }
 
