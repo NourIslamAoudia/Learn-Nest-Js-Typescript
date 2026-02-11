@@ -8,7 +8,7 @@ export class UserService {
     this.users.push(user);
   }
 
-  addUser(): string[] {
+  getUsers(): string[] {
     return this.users;
   }
 
@@ -16,7 +16,7 @@ export class UserService {
     return 'This action returns all users';
   }
 
-  async getUser(): Promise<string> {
+  async getUser(id: string): Promise<string> {
     //searching for a user by id logic here in the database
     const userExists = false; // This is just a placeholder. Replace with actual logic.
 

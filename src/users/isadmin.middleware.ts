@@ -7,7 +7,7 @@ export class IsadminMiddleware implements NestMiddleware {
     const { role } = req.body;
     console.log('Role:', role);
 
-    if (req.body.role !== 'admin') {
+    if (role !== 'admin') {
       return res.status(403).json({ message: 'Forbidden: Admins only' });
     }
     next();
