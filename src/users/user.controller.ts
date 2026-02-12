@@ -6,6 +6,8 @@ import {
   Param,
   Query,
   ParseIntPipe,
+  ParseBoolPipe,
+  HttpStatus,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 
@@ -29,15 +31,22 @@ export class UserController {
     return this.userService.getUsers();
   }
 
+  @Get('byname')
+  async getUserByName(
+    @Query(
+      'name',
+      new ParseBoolPipe({
+        errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE,
+      }),
+    )
+    name: boolean,
+  ): Promise<string> {
+    return this.userService.getUserByName(name);
+  }
   @Get('/:id')
   async getUserById(@Param('id', ParseIntPipe) id: number): Promise<string> {
     return this.userService.getUser(id);
   }
-
-  //   @Post()
-  //   async getUserById(@Query('id') id: string): Promise<string> {
-  //     return this.userService.getUser(id);
-  //   }
 }
 
 @Controller('admin')

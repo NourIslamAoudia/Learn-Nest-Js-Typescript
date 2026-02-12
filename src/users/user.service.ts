@@ -25,4 +25,11 @@ export class UserService {
     }
     return 'This action returns a user by id';
   }
+
+  async getUserByName(name: boolean): Promise<string> {
+    if (!name) {
+      throw new HttpException('User not found', 404);
+    }
+    return 'This action returns a user by name';
+  }
 }
