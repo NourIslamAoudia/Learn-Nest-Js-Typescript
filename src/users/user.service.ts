@@ -16,9 +16,9 @@ export class UserService {
     return 'This action returns all users';
   }
 
-  async getUser(id: string): Promise<string> {
+  async getUser(id: number): Promise<string> {
     //searching for a user by id logic here in the database
-    const userExists = false; // This is just a placeholder. Replace with actual logic.
+    const userExists = true; // This is just a placeholder. Replace with actual logic.
 
     if (!userExists) {
       throw new HttpException('User not found', 404);

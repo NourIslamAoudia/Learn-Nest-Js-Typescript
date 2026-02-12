@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Query,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('users')
@@ -22,7 +30,7 @@ export class UserController {
   }
 
   @Get('/:id')
-  async getUserById(@Param('id') id: string): Promise<string> {
+  async getUserById(@Param('id', ParseIntPipe) id: number): Promise<string> {
     return this.userService.getUser(id);
   }
 
