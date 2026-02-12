@@ -10,6 +10,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { UserService } from './user.service';
+import { ValidationPipe } from './pipes/log.pipe';
 
 @Controller('users')
 export class UserController {
@@ -21,7 +22,8 @@ export class UserController {
   }
 
   @Post('addUser')
-  createUser(@Body() user: string): string {
+  // custom validation pipe to validate the user input
+  createUser(@Body(new ValidationPipe()) user: string): string {
     this.userService.create(user);
     return 'User created successfully';
   }
