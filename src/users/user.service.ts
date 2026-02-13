@@ -1,4 +1,5 @@
 import { Injectable, HttpException } from '@nestjs/common';
+import { SignupUserDto } from './dto/signupUser.dto';
 
 @Injectable()
 export class UserService {
@@ -31,5 +32,10 @@ export class UserService {
       throw new HttpException('User not found', 404);
     }
     return 'This action returns a user by name';
+  }
+
+  async signup(signupUserDto: SignupUserDto): Promise<void> {
+    // Here you would typically handle the signup logic, such as saving the user to a database
+    console.log('User signed up with data:', signupUserDto);
   }
 }

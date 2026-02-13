@@ -8,13 +8,22 @@ import {
   ParseIntPipe,
   ParseBoolPipe,
   HttpStatus,
+  ValidationPipe,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ValidationPipe } from './pipes/log.pipe';
+import { SignupUserDto } from './dto/signupUser.dto';
 
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Post('signup')
+  signup(@Body(ValidationPipe) signupUserDto: SignupUserDto): string {
+    // Call the user service to handle the signup logic
+    this.userService.signup(signupUserDto);
+    return 'User signed up successfully';
+  }
+
   @Get()
   getAllUsers(): string {
     // return juste string for testing purpose
@@ -23,7 +32,7 @@ export class UserController {
 
   @Post('addUser')
   // custom validation pipe to validate the user input
-  createUser(@Body(new ValidationPipe()) user: string): string {
+  createUser(@Body(ValidationPipe) user: string): string {
     this.userService.create(user);
     return 'User created successfully';
   }
