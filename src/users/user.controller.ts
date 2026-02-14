@@ -9,10 +9,13 @@ import {
   ParseBoolPipe,
   HttpStatus,
   ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { SignupUserDto } from './dto/signupUser.dto';
 import { LoginUserDto } from './dto/loginUser.dto';
+import { RolesGuard } from './guards/roles.guard';
+import { Roles } from './decorators/roles.decorator';
 
 @Controller('users')
 export class UserController {
@@ -32,6 +35,8 @@ export class UserController {
     return 'User logged in successfully';
   }
 
+  @Roles('admin')
+  @UseGuards(RolesGuard)
   @Get()
   getAllUsers(): string {
     // return juste string for testing purpose
