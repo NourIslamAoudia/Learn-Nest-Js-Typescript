@@ -1,5 +1,6 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { SignupUserDto } from './dto/signupUser.dto';
+import { LoginUserDto } from './dto/loginUser.dto';
 
 @Injectable()
 export class UserService {
@@ -37,5 +38,10 @@ export class UserService {
   async signup(signupUserDto: SignupUserDto): Promise<void> {
     // Here you would typically handle the signup logic, such as saving the user to a database
     console.log('User signed up with data:', signupUserDto);
+  }
+
+  async login(loginUserDto: LoginUserDto): Promise<void> {
+    // Here you would typically handle the login logic, such as validating the user credentials
+    console.log('User logged in with data:', loginUserDto);
   }
 }

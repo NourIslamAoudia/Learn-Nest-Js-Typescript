@@ -12,6 +12,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { SignupUserDto } from './dto/signupUser.dto';
+import { LoginUserDto } from './dto/loginUser.dto';
 
 @Controller('users')
 export class UserController {
@@ -22,6 +23,13 @@ export class UserController {
     // Call the user service to handle the signup logic
     this.userService.signup(signupUserDto);
     return 'User signed up successfully';
+  }
+
+  @Post('login')
+  login(@Body(ValidationPipe) loginUserDto: LoginUserDto): string {
+    // Here you would typically handle the login logic, such as validating the user credentials
+    this.userService.login(loginUserDto);
+    return 'User logged in successfully';
   }
 
   @Get()
